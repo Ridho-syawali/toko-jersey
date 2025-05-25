@@ -20,8 +20,14 @@ Route::get('/', function () {
 
 
 Route::get('/products', function () {
-    return view('products');
+    return view('products.products');
 });
+
+Route::get('/products/{id}', function ($id) {
+    return view('products.detail', [
+        'product_id' => $id
+    ]);
+})->name('product.detail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
