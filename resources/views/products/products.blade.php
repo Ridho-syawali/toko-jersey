@@ -44,14 +44,14 @@
             <!-- Produk 1 -->
             <!-- Contoh untuk Produk 1 -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-                <a href="{{ route('product.detail', 1) }}" class="block">
+                <a href="#"class="block">
                     <div class="relative">
                         <img src="https://via.placeholder.com/300x300" alt="Jersey Home" class="w-full h-64 object-cover">
                         <span class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">HOT</span>
                     </div>
                 </a>
                 <div class="p-4">
-                    <a href="{{ route('product.detail', 1) }}" class="block">
+                    <a href="#" class="block">
                         <h3 class="text-lg font-semibold hover:text-blue-600">Home Jersey 2023</h3>
                     </a>
                     <span class="text-blue-600 font-bold">Rp 350.000</span>
