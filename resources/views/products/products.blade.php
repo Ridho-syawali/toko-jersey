@@ -42,13 +42,18 @@
     <section class="container mx-auto px-4 pb-16">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             <!-- Produk 1 -->
+            <!-- Contoh untuk Produk 1 -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-                <div class="relative">
-                    <img src="https://via.placeholder.com/300x300" alt="Jersey Home" class="w-full h-64 object-cover">
-                    <span class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">HOT</span>
-                </div>
+                <a href="{{ route('product.detail', 1) }}" class="block">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x300" alt="Jersey Home" class="w-full h-64 object-cover">
+                        <span class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">HOT</span>
+                    </div>
+                </a>
                 <div class="p-4">
-                    <h3 class="text-lg font-semibold">Home Jersey 2023</h3>
+                    <a href="{{ route('product.detail', 1) }}" class="block">
+                        <h3 class="text-lg font-semibold hover:text-blue-600">Home Jersey 2023</h3>
+                    </a>
                     <span class="text-blue-600 font-bold">Rp 350.000</span>
                     <p class="text-gray-500 text-sm mb-4">Official Match Version</p>
                     <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
