@@ -20,20 +20,14 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-Route::get('/products', function () {
-    return view('products.products');
-});
-
-Route::get('/products/{id}', function ($id) {
-    return view('products.detail', [
-        'product_id' => $id
-    ]);
-})->name('product.detail');
+// Cart dummy
+Route::get('/cart', function () {
+    return view('cart.cart');
+})->name('cart');
 
 // Produk: read all & by id (JSON response)
 Route::get('/products', [ProdukController::class, 'index']);
-Route::get('/products/{id}', [ProdukController::class, 'show']);
+Route::get('/products/{id}', [ProdukController::class, 'show'])->name('products.show');
 
 // Order: CRUD (JSON response)
 Route::get('/order', [OrderController::class, 'index']);

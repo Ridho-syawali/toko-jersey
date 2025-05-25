@@ -22,8 +22,9 @@ class ProdukController extends Controller
     {
         $produk = Produk::find($id);
         if (!$produk) {
-            return view('products.detail',$produk)->with('error', 'Produk tidak ditemukan');
-        // return response()->json($produk);
+            return view('products.detail', ['produk' => null])->with('error', 'Produk tidak ditemukan');
+        } else {
+            return view('products.detail', ['produk' => $produk]);
+        }
     }
-}
 }
