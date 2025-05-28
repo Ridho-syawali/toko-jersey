@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 class ProdukController extends Controller
 {
     // Tampilkan semua produk
-    public function index()
+    public function index(Request $request)
     {
-        $data=[
-            'produk' => Produk::all(),
+        $query = Produk::query();
+
+        // Filter kategori jika ada
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        // Sorting
+        if ($request->sort == 'termurah') {
+            $query->orderBy('harga', 'asc');
+        } elseif ($request->sort == 'termahal') {
+            $query->orderBy('harga', 'desc');
+        } elseif ($request->sort == 'terbaru') {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $data = [
+            'produk' => $query->get(),
         ];
         return view('products.products', $data);
         // return response()->json(Produk::all());
