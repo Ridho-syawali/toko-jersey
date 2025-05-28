@@ -17,24 +17,23 @@
         <div class="flex flex-col md:flex-row justify-between items-center mb-8">
             <div class="mb-4 md:mb-0">
                 <h2 class="text-2xl font-semibold">Semua Produk</h2>
-                <p class="text-gray-600">Menampilkan 12 produk</p>
+                <p class="text-gray-600">Menampilkan {{ count($produk) }} produk</p>
             </div>
-            
-            <div class="flex flex-col md:flex-row gap-4">
-                <select class="px-4 py-2 border rounded-lg bg-white">
-                    <option>Filter Kategori</option>
-                    <option>Jersey Sepak Bola</option>
-                    <option>Jersey Basket</option>
-                    <option>Jersey E-sports</option>
+            <form method="GET" class="flex flex-col md:flex-row gap-4">
+                <select name="kategori" class="px-4 py-2 border rounded-lg bg-white">
+                    <option value="">Filter Kategori</option>
+                    <option value="sepakbola" {{ request('kategori') == 'sepakbola' ? 'selected' : '' }}>Jersey Sepak Bola</option>
+                    <option value="basket" {{ request('kategori') == 'basket' ? 'selected' : '' }}>Jersey Basket</option>
+                    <option value="esports" {{ request('kategori') == 'esports' ? 'selected' : '' }}>Jersey E-sports</option>
                 </select>
-                
-                <select class="px-4 py-2 border rounded-lg bg-white">
-                    <option>Urutkan</option>
-                    <option>Termurah</option>
-                    <option>Termahal</option>
-                    <option>Terbaru</option>
+                <select name="sort" class="px-4 py-2 border rounded-lg bg-white">
+                    <option value="">Urutkan</option>
+                    <option value="termurah" {{ request('sort') == 'termurah' ? 'selected' : '' }}>Termurah</option>
+                    <option value="termahal" {{ request('sort') == 'termahal' ? 'selected' : '' }}>Termahal</option>
+                    <option value="terbaru" {{ request('sort') == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
                 </select>
-            </div>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Terapkan</button>
+            </form>
         </div>
     </section>
 
