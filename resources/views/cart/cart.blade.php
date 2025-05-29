@@ -4,10 +4,11 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-50 py-8">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-10">
         <h1 class="text-3xl font-bold mb-8">Keranjang Belanja</h1>
         <!-- Cart Items -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
             <!-- Cart Header -->
             <div class="hidden md:grid grid-cols-12 bg-gray-100 p-4 font-semibold">
                 <div class="col-span-5">Produk</div>
@@ -21,8 +22,8 @@
                 <div class="flex flex-col md:flex-row md:items-center md:grid md:grid-cols-12 gap-4">
                     <!-- Product Info -->
                     <div class="flex items-center col-span-5">
-                        <img src="{{ $item->produk->gambar ?? 'https://via.placeholder.com/80x80' }}" alt="{{ $item->produk->nama_jersey ?? '-' }}" class="w-20 h-20 object-cover rounded-lg mr-4">
-                        <div>
+                     <img src="../images/{{ $item->produk->gambar }}" alt="{{ $item->produk->nama_jersey }}" class="w-24 h-24 object-contain aspect-video">
+                    <div>
                             <h3 class="font-medium">{{ $item->produk->nama_jersey ?? '-' }}</h3>
                             <p class="text-sm text-gray-500">Ukuran: {{ $item->ukuran ?? '-' }}</p>
                         </div>
@@ -71,19 +72,6 @@
             <div class="p-4 text-center text-gray-500">Keranjang kosong.</div>
             @endforelse
         </div>
-        <!-- Cart Summary -->
-        <div class="flex flex-col md:flex-row gap-8">
-            <!-- Coupon Code -->
-            <div class="w-full md:w-1/2">
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <h3 class="text-lg font-semibold mb-4">Kupon Diskon</h3>
-                    <form action="{{ url('/cart/apply-coupon') }}" method="POST" class="flex">
-                        @csrf
-                        <input type="text" name="coupon_code" placeholder="Masukkan kode kupon" class="flex-1 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ $cart->coupon_code }}">
-                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700 transition">Gunakan</button>
-                    </form>
-                </div>
-            </div>
             <!-- Cart Total -->
             <div class="w-full md:w-1/2">
                 <div class="bg-white rounded-xl shadow-md p-6">
@@ -119,8 +107,7 @@
                         </button>
                     </form>
                 </div>
-            </div>
-        </div>
+            </div></div>
     </div>
 </div>
 @endsection
