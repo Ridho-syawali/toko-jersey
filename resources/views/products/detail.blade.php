@@ -52,7 +52,7 @@
             <div class="w-full md:w-1/2">
                 <!-- Main Image -->
                 <div class="bg-white rounded-xl shadow-md p-4 mb-4">
-                    <img src="https://via.placeholder.com/600x600" alt="Jersey Home 2023" class="w-full h-auto rounded-lg object-cover">
+                <img src="../images/{{ $produk->gambar }}" alt="{{ $produk->nama_jersey }}" class="w-full h-full object-contain aspect-video">
                 </div>
                 
             </div>
@@ -66,8 +66,8 @@
                     
                     <!-- Price -->
                     <div class="mb-6">
-                        <span class="text-3xl font-bold text-blue-600">Rp 350.000</span>
-                        <span class="text-sm text-gray-500 line-through ml-2">Rp 450.000</span>
+                        <span class="text-3xl font-bold text-blue-600">Rp {{ number_format($produk->harga,0,',','.') }}</span>
+                        <span class="text-sm text-gray-500 line-through ml-2">Rp {{ number_format($produk->harga+($produk->harga*22/100),0,',','.') }}</span>
                         <span class="bg-green-100 text-green-800 text-xs font-medium ml-2 px-2.5 py-0.5 rounded">22% OFF</span>
                     </div>
                     
@@ -75,23 +75,9 @@
                     <div class="mb-6">
                         <h3 class="text-lg font-semibold mb-2">Deskripsi Produk</h3>
                         <p class="text-gray-700">
-                            Jersey Home 2023 dengan desain terbaru menggunakan bahan high quality yang nyaman dipakai. 
-                            Tersedia dalam berbagai ukuran dari S sampai XXL. Jersey resmi dengan logo klub dan sponsor asli.
+                            {{ $produk->deskripsi }}    
                         </p>
                     </div>
-                    
-                    <!-- Size Selection -->
-                    <div class="mb-6">
-                        <h3 class="text-lg font-semibold mb-3">Pilih Ukuran</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="px-4 py-2 border rounded-lg hover:bg-blue-100 focus:bg-blue-600 focus:text-white">S</button>
-                            <button class="px-4 py-2 border rounded-lg hover:bg-blue-100 focus:bg-blue-600 focus:text-white">M</button>
-                            <button class="px-4 py-2 border rounded-lg hover:bg-blue-100 focus:bg-blue-600 focus:text-white">L</button>
-                            <button class="px-4 py-2 border rounded-lg hover:bg-blue-100 focus:bg-blue-600 focus:text-white">XL</button>
-                            <button class="px-4 py-2 border rounded-lg hover:bg-blue-100 focus:bg-blue-600 focus:text-white">XXL</button>
-                        </div>
-                    </div>
-                    
                     <!-- Quantity & Action Buttons -->
                     <div class="mb-6">
                         <form action="{{ url('/cart/add') }}" method="POST">
@@ -149,32 +135,6 @@
             </div>
         </div>
         
-        <!-- Product Tabs -->
-        <div class="mt-12">
-            <div class="border-b border-gray-200">
-                <nav class="flex -mb-px">
-                    <button class="mr-8 py-4 px-1 border-b-2 font-medium text-sm border-blue-500 text-blue-600">
-                        Deskripsi Produk
-                    </button>
-                    
-                </nav>
-            </div>
-            
-            <div class="bg-white rounded-b-xl shadow-md p-6">
-                <h3 class="text-xl font-semibold mb-4">Detail Produk</h3>
-                <p class="text-gray-700 mb-4">
-                    Jersey Home 2023 ini dibuat dengan bahan polyester berkualitas tinggi yang memiliki kemampuan menyerap keringat dengan baik. 
-                    Desain yang ergonomis memberikan kenyamanan maksimal saat bermain.
-                </p>
-                <ul class="list-disc pl-5 text-gray-700">
-                    <li>Bahan: Polyester high quality</li>
-                    <li>Sablon: DTF (Durable dan tidak mudah luntur)</li>
-                    <li>Lingkar dada: S (90cm), M (94cm), L (98cm), XL (102cm), XXL (106cm)</li>
-                    <li>Panjang: S (68cm), M (70cm), L (72cm), XL (74cm), XXL (76cm)</li>
-                    <li>Include: Jersey + tag original</li>
-                </ul>
-            </div>
-        </div>
     </section>
 </div>
 @endsection

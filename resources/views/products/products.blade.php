@@ -19,7 +19,7 @@
                 <h2 class="text-2xl font-semibold">Semua Produk</h2>
                 <p class="text-gray-600">Menampilkan {{ count($produk) }} produk</p>
             </div>
-            <form method="GET" class="flex flex-col md:flex-row gap-4">
+            <!-- <form method="GET" class="flex flex-col md:flex-row gap-4">
                 <select name="kategori" class="px-4 py-2 border rounded-lg bg-white">
                     <option value="">Filter Kategori</option>
                     <option value="sepakbola" {{ request('kategori') == 'sepakbola' ? 'selected' : '' }}>Jersey Sepak Bola</option>
@@ -33,7 +33,7 @@
                     <option value="terbaru" {{ request('sort') == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
                 </select>
                 <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Terapkan</button>
-            </form>
+            </form> -->
         </div>
     </section>
 
@@ -45,14 +45,14 @@
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
                 <a href="{{ route('products.show', $product->id) }}" rel="noopener noreferrer" class="class="block">
                     <div class="relative">
-                        <img src="{{ $product->gambar }}" alt="{{ $product->nama_jersey }}" class="w-full h-64 object-cover">
+                        <img src="./images/{{ $product->gambar }}" alt="{{ $product->nama_jersey }}" class="w-full h-64 object-contain aspect-video">
                     </div>
                 </a>
                 <div class="p-4">
                     <a href="{{ route('products.show', $product->id) }}" class="block">
                         <h3 class="text-lg font-semibold hover:text-blue-600 min-h-14 line-clamp-2">{{ $product->nama_jersey }}</h3>
                     </a>
-                    <span class="text-blue-600 font-bold">Rp {{ $product->harga }}</span>
+                    <span class="text-blue-600 font-bold">Rp {{ number_format($product->harga,0,',','.') }}</span>
                     <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ $product->deskripsi }}</p>
                 </div>
             </div>

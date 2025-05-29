@@ -20,12 +20,12 @@
         <!-- Content on Right (50% width) -->
         <div class="w-full md:w-1/2 text-center md:text-left">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-800">JerseyVerse</h1>
-            <h2 class="text-2xl md:text-3xl mb-8 text-gray-600">Choose Your Jersey in JerseyVerse</h2>
-            <p class="text-xl mb-8 text-gray-500">High quality jersey in this town</p>
+            <h2 class="text-2xl md:text-3xl mb-8 text-gray-600">Pilih Jersey Anda di JerseyVerse</h2>
+            <p class="text-xl mb-8 text-gray-500">Jersey berkualitas tinggi di kota ini</p>
             
             <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
                 <a href="./products" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out">
-                    Explore
+                    Jelajahi
                 </a>
             </div>
         </div>
