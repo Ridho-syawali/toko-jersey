@@ -11,25 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-       // Tabel orders (header pesanan)
- Schema::create('orders', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-    $table->string('kode_order')->unique(); // Contoh: "JRS-202401-001"
-    $table->decimal('total_harga', 10, 2);
-    $table->enum('status', ['menunggu_pembayaran', 'diproses', 'dikirim', 'selesai'])->default('menunggu_pembayaran');
-    $table->string('metode_pembayaran')->nullable(); // Transfer, COD, dll
-    $table->timestamps();
-});
+      // Migration untuk orders
+    Schema::create('orders', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained();
+        $table->string('kode_order')->unique();
+        $table->decimal('subtotal', 12, 2);
+        $table->decimal('diskon', 12, 2)->default(0);
+        $table->decimal('ongkir', 12, 2);
+        $table->decimal('total_harga', 12, 2);
+        $table->string('status')->default('menunggu_pembayaran');
+        $table->string('metode_pembayaran')->nullable();
+        $table->text('alamat_pengiriman');
+        $table->dateTime('tanggal_pembayaran')->nullable();
+        $table->timestamps();
+    });
 
-// Tabel order_items (detail item yang dibeli)
-Schema::create('order_items', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-    $table->foreignId('produk_id')->constrained('produks')->onDelete('cascade');
-    $table->integer('jumlah');
-    $table->decimal('harga_satuan', 10, 2); // Harga saat checkout (antisipasi perubahan harga)
-});
+    // Migration untuk order_items
+    Schema::create('order_items', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('order_id')->constrained();
+        $table->foreignId('produk_id')->constrained();
+        $table->integer('jumlah');
+        $table->decimal('harga_satuan', 12, 2);
+        $table->string('ukuran');
+        $table->timestamps();
+    });
 
     }
 
