@@ -31,13 +31,6 @@ Route::get('/cart', function () {
 Route::get('/products', [ProdukController::class, 'index']);
 Route::get('/products/{id}', [ProdukController::class, 'show'])->name('products.show');
 
-// Order: CRUD (JSON response)
-Route::get('/order', [OrderController::class, 'index']);
-Route::get('/order/{id}', [OrderController::class, 'show']);
-Route::post('/order', [OrderController::class, 'store']);
-Route::put('/order/{id}', [OrderController::class, 'update']);
-Route::delete('/order/{id}', [OrderController::class, 'destroy']);
-
 // Cart routes (hanya untuk user login)
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show'])->name('cart');
@@ -46,7 +39,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/update/{itemId}', [\App\Http\Controllers\CartController::class, 'update']);
     Route::post('/cart/remove/{itemId}', [\App\Http\Controllers\CartController::class, 'remove']);
     Route::post('/cart/apply-coupon', [\App\Http\Controllers\CartController::class, 'applyCoupon']);
-    Route::post('/cart/checkout', [\App\Http\Controllers\CartController::class, 'checkout']);
+    
+   // Halaman checkout
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
+
+    // Payment routes
+    Route::post('/checkout/proses', [App\Http\Controllers\PaymentController::class, 'store'])->name('checkout.store');
+    Route::get('/orders/{order}/details', [OrderController::class, 'showDetails'])->name('orders.details');
+
+    // Order history routes
+    Route::get('/orders/history', [OrderController::class, 'history'])->name('orders.history');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

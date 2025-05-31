@@ -19,4 +19,29 @@ class Produk extends Model
     'stok',
     'gambar',
     ];
+
+    
+    // Relasi ke cart items
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
+    // Relasi ke order items
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    // Cek stok tersedia
+    public function isAvailable($quantity)
+    {
+        return $this->stok >= $quantity;
+    }
+
+    // Format harga
+    public function formattedPrice()
+    {
+        return 'Rp ' . number_format($this->harga, 0, ',', '.');
+    }
 }

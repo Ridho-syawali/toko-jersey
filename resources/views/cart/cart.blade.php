@@ -64,7 +64,7 @@
                                 </svg>
                             </button>
                         </form>
-                        <a href="{{ url('/cart/update-page/'.$item->id) }}" class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded text-xs mt-1" title="Update Ukuran">Update Ukuran</a>
+                        <!-- <a href="{{ url('/cart/update-page/'.$item->id) }}" class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded text-xs mt-1" title="Update Ukuran">Update Ukuran</a> -->
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             @endforelse
         </div>
             <!-- Cart Total -->
-            <div class="w-full md:w-1/2">
+            <div class="w-full md:w-1/2 flex flex-col-reverse gap-4">
                 <div class="bg-white rounded-xl shadow-md p-6">
                     <h3 class="text-lg font-semibold mb-4">Ringkasan Belanja</h3>
                     @php
@@ -100,14 +100,19 @@
                             <span>Rp {{ number_format($total,0,',','.') }}</span>
                         </div>
                     </div>
-                    <form action="{{ url('/cart/checkout') }}" method="POST">
+                    <a href="{{ route('checkout.show') }}" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold transition text-center block">
+                        Proses Pembayaran
+                    </a>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6">Add commentMore actions
+                    <h3 class="text-lg font-semibold mb-4">Kupon Diskon</h3>
+                    <form action="{{ url('/cart/apply-coupon') }}" method="POST" class="flex">
                         @csrf
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold transition">
-                            Proses Pembayaran
-                        </button>
+                        <input type="text" name="coupon_code" placeholder="Masukkan kode kupon" class="flex-1 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ $cart->coupon_code }}">
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700 transition">Gunakan</button>
                     </form>
                 </div>
-            </div></div>
+            </div>
     </div>
 </div>
 @endsection

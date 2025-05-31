@@ -14,18 +14,21 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'kode_order',
+        'subtotal',
+        'diskon',
+        'ongkir',
         'total_harga',
         'status',
         'metode_pembayaran',
     ];
 
-    public function items()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -96,39 +100,16 @@ class CartController extends Controller
     }
 
     // Checkout: buat order dari cart
+    // CartController.php
     public function checkout()
     {
-        $cart = Cart::with('items')->where('user_id', Auth::id())->first();
+        $cart = Cart::with('items.produk')->where('user_id', Auth::id())->first();
+        
         if (!$cart || $cart->items->isEmpty()) {
             return redirect()->back()->with('error', 'Keranjang kosong!');
         }
-        DB::beginTransaction();
-        try {
-            $order = \App\Models\Order::create([
-                'user_id' => Auth::id(),
-                'kode_order' => 'JRS-' . now()->format('Ymd-His'),
-                'total_harga' => $cart->items->sum(fn($i) => $i->jumlah * $i->harga_satuan) - $cart->discount,
-                'status' => 'menunggu_pembayaran',
-                'metode_pembayaran' => null,
-            ]);
-            foreach ($cart->items as $item) {
-                \App\Models\OrderItem::create([
-                    'order_id' => $order->id,
-                    'produk_id' => $item->produk_id,
-                    'jumlah' => $item->jumlah,
-                    'harga_satuan' => $item->harga_satuan,
-                ]);
-            }
-            $cart->items()->delete();
-            $cart->coupon_code = null;
-            $cart->discount = 0;
-            $cart->save();
-            DB::commit();
-            // Redirect ke download invoice setelah checkout
-            return redirect()->to(url('/invoice/' . $order->id));
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Checkout gagal: ' . $e->getMessage());
-        }
+
+        // Hanya redirect ke halaman checkout dengan data cart
+        return view('checkout.show', compact('cart'));
     }
 }
