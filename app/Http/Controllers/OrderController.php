@@ -21,6 +21,7 @@ class OrderController extends Controller
         return view('orders.history', compact('orders'));
     }
 
+
     public function index()
 {
     $orders = auth()->user()->orders()

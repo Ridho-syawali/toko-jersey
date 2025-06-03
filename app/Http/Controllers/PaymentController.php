@@ -68,7 +68,7 @@ class PaymentController extends Controller
         $order->status = 'menunggu_pembayaran';
         $order->tanggal_pembayaran = now();
         $order->save();
-
+  
         // Persiapkan data order items
         $orderItems = $cartItems->map(function ($item) use ($order) {
             return [
