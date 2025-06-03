@@ -15,6 +15,7 @@ return new class extends Migration
     Schema::create('orders', function (Blueprint $table) {
         $table->id();
         $table->foreignId('user_id')->constrained();
+        $table->string('nama_user')->nullable();
         $table->string('kode_order')->unique();
         $table->decimal('subtotal', 12, 2);
         $table->decimal('diskon', 12, 2)->default(0);
