@@ -91,12 +91,12 @@
                             <h3 class="font-semibold mb-2">Informasi Pengiriman:</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <p class="text-sm"><span class="font-medium">Nama:</span> {{ $order->user_id }}</p>
-                                    <p class="text-sm"><span class="font-medium">Nama:</span> {{ $order->nama_user }}</p>
+                                    <p class="text-sm"><span class="font-medium">id:</span> {{ $order->user_id }}</p>
+                                    <p class="text-sm"><span class="font-medium">Nama penerima:</span> {{ $order->nama_user }}</p>
                                 </div>
                                 <div>
+                                    <p class="text-sm"><span class="font-medium">Metode Pembayaran:</span> {{ $order->metode_pembayaran }}</p>
                                     <p class="text-sm"><span class="font-medium">Alamat:</span> {{ $order->alamat_pengiriman }}</p>
-                                    <p class="text-sm"><span class="font-medium">Kurir:</span> {{ strtoupper($order->kurir) }} - {{ $order->service }}</p>
                                 </div>
                             </div>
                         </div>
